@@ -42,14 +42,19 @@ set(LZ4_CLI_SOURCES
   "programs/datagen.c")
 
 add_library(lz4 ${LZ4_SOURCES})
+set(targets_to_install lz4)
 
-add_executable(lz4cli ${LZ4_CLI_SOURCES})
-set_target_properties(lz4cli PROPERTIES OUTPUT_NAME lz4)
-target_link_libraries(lz4cli PUBLIC lz4)
+if(NOT IOS)
+  add_executable(lz4cli ${LZ4_CLI_SOURCES})
+  set_target_properties(lz4cli PROPERTIES OUTPUT_NAME lz4)
+  target_link_libraries(lz4cli PUBLIC lz4)
 
-add_executable(lz4c ${LZ4_CLI_SOURCES})
-target_compile_definitions(lz4c PUBLIC ENABLE_LZ4C_LEGACY_OPTIONS)
-target_link_libraries(lz4c PUBLIC lz4)
+  add_executable(lz4c ${LZ4_CLI_SOURCES})
+  target_compile_definitions(lz4c PUBLIC ENABLE_LZ4C_LEGACY_OPTIONS)
+  target_link_libraries(lz4c PUBLIC lz4)
+
+  list(APPEND targets_to_install lz4cli lz4c)
+endif()
 
 include(GNUInstallDirs)
 
@@ -96,7 +101,7 @@ configure_package_config_file(
 )
 
 install(
-    TARGETS lz4 lz4cli lz4c
+    TARGETS ${targets_to_install}
     EXPORT "${TARGETS_EXPORT_NAME}"
     LIBRARY DESTINATION "lib"
     ARCHIVE DESTINATION "lib"
