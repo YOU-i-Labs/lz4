@@ -38,12 +38,12 @@
 
 #include <lz4/LZ4_EXPORT.h>
 
+/* --- Dependency --- */
+#include <stddef.h>   /* size_t */
+
 #if defined (__cplusplus)
 extern "C" {
 #endif
-
-/* --- Dependency --- */
-#include <stddef.h>   /* size_t */
 
 /**
   Introduction
@@ -441,9 +441,8 @@ LZ4_EXPORT LZ4_DEPRECATED("use LZ4_saveDict() instead")     char* LZ4_slideInput
 LZ4_EXPORT LZ4_DEPRECATED("use LZ4_decompress_safe_usingDict() instead") int LZ4_decompress_safe_withPrefix64k (const char* src, char* dst, int compressedSize, int maxDstSize);
 LZ4_EXPORT LZ4_DEPRECATED("use LZ4_decompress_fast_usingDict() instead") int LZ4_decompress_fast_withPrefix64k (const char* src, char* dst, int originalSize);
 
-#endif /* LZ4_H_2983827168210 */
-
-
 #if defined (__cplusplus)
 }
 #endif
+
+#endif /* LZ4_H_2983827168210 */

@@ -36,14 +36,13 @@
 
 #include <lz4/LZ4_EXPORT.h>
 
-#if defined (__cplusplus)
-extern "C" {
-#endif
-
 /* --- Dependency --- */
 /* note : lz4hc is not an independent module, it requires lz4.h/lz4.c for proper compilation */
 #include "lz4.h"   /* stddef, LZ4_DEPRECATED */
 
+#if defined (__cplusplus)
+extern "C" {
+#endif
 
 /* --- Useful constants --- */
 #define LZ4HC_CLEVEL_MIN         3
@@ -221,12 +220,6 @@ LZ4_EXPORT LZ4_DEPRECATED("use LZ4_createStreamHC() instead") int   LZ4_sizeofSt
 LZ4_EXPORT LZ4_DEPRECATED("use LZ4_resetStreamHC() instead")  int   LZ4_resetStreamStateHC(void* state, char* inputBuffer);
 
 
-#if defined (__cplusplus)
-}
-#endif
-
-#endif /* LZ4_HC_H_19834876238432 */
-
 /*-************************************************
  * !!!!!     STATIC LINKING ONLY     !!!!!
  * Following definitions are considered experimental.
@@ -274,7 +267,11 @@ int LZ4_compress_HC_continue_destSize(LZ4_streamHC_t* LZ4_streamHCPtr,
  */
 void LZ4_setCompressionLevel(LZ4_streamHC_t* LZ4_streamHCPtr, int compressionLevel);
 
-
-
 #endif   /* LZ4_HC_SLO_098092834 */
 #endif   /* LZ4_HC_STATIC_LINKING_ONLY */
+
+#if defined (__cplusplus)
+}
+#endif
+
+#endif /* LZ4_HC_H_19834876238432 */
