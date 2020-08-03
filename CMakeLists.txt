@@ -24,6 +24,8 @@ string(REGEX REPLACE "^#define LZ4_VERSION_RELEASE +([0-9]+) +.*$" "\\1" patch "
 
 project(lz4 VERSION "${major}.${minor}.${patch}")
 
+option(LZ4_BUILD_CLI_TOOLS "Indicate whether command line tools should be built." OFF)
+
 include_directories("${CMAKE_CURRENT_LIST_DIR}/lib")
 
 # CLI sources
@@ -44,7 +46,7 @@ set(LZ4_CLI_SOURCES
 add_library(lz4 ${LZ4_SOURCES})
 set(targets_to_install lz4)
 
-if(NOT IOS)
+if(LZ4_BUILD_CLI_TOOLS)
   add_executable(lz4cli ${LZ4_CLI_SOURCES})
   set_target_properties(lz4cli PROPERTIES OUTPUT_NAME lz4)
   target_link_libraries(lz4cli PUBLIC lz4)
